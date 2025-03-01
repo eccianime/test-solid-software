@@ -79,4 +79,5 @@ This project is licensed under the MIT License. Feel free to customize and exten
 
 ### Demo
 
+![Demo](https://github.com/eccianime/test-solid-software/blob/master/demo.gif)
 
