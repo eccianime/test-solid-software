@@ -1,39 +1,10 @@
 import { useRef, useState } from 'react';
-import {
-  Animated,
-  Dimensions,
-  FlatList,
-  Pressable,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
-
-const MAX_HEX_VALUE = 16777215; // (256 x 256 x 256) -1
-const WHITE_COLOR = '#FFFFFF';
-const BLACK_COLOR = '#000000';
-
-const PONDERATIONS = {
-  R: 0.2126,
-  G: 0.7152,
-  B: 0.0722,
-};
-
-const BOX_SIZE = Dimensions.get('window').width / 5;
+import { Animated, Pressable, StyleSheet } from 'react-native';
+import ColorList from './src/components/ColorList';
+import { MAX_HEX_VALUE, WHITE_COLOR } from './src/constants';
+import { returnBlackOrWhite } from './src/utils';
 
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
-
-const getBrightness = (hex: string) => {
-  const r = parseInt(hex.slice(1, 3), 16);
-  const g = parseInt(hex.slice(3, 5), 16);
-  const b = parseInt(hex.slice(5, 7), 16);
-  return PONDERATIONS.R * r + PONDERATIONS.G * g + PONDERATIONS.B * b;
-};
-
-const returnBlackOrWhite = (hex: string) => {
-  const brightness = getBrightness(hex);
-  return brightness > 128 ? BLACK_COLOR : WHITE_COLOR;
-};
 
 export default function App() {
   const [previousColor, setPreviousColor] = useState(WHITE_COLOR);
@@ -73,14 +44,6 @@ export default function App() {
     ],
   });
 
-  const renderItem = ({ item }: { item: string }) => (
-    <View style={[styles.colorBox, { backgroundColor: item }]}>
-      <Text style={[styles.textColorBox, { color: returnBlackOrWhite(item) }]}>
-        {item}
-      </Text>
-    </View>
-  );
-
   return (
     <AnimatedPressable
       style={[styles.container, { backgroundColor: currentColor }]}
@@ -89,15 +52,7 @@ export default function App() {
       <Animated.Text style={[styles.text, { color: fontColor }]}>
         Hello there
       </Animated.Text>
-      <FlatList
-        data={lastFiveColors}
-        bounces={false}
-        showsHorizontalScrollIndicator={false}
-        renderItem={renderItem}
-        horizontal
-        contentContainerStyle={styles.listInternal}
-        style={styles.listExternal}
-      />
+      <ColorList data={lastFiveColors} />
     </AnimatedPressable>
   );
 }
@@ -110,27 +65,6 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 20,
-    fontWeight: 'bold',
-  },
-  listExternal: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-  },
-  listInternal: {
-    flexGrow: 1,
-    borderTopWidth: 1,
-  },
-  colorBox: {
-    width: BOX_SIZE,
-    height: BOX_SIZE,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRightWidth: 1,
-    borderLeftWidth: 1,
-  },
-  textColorBox: {
-    fontSize: 12,
     fontWeight: 'bold',
   },
 });
