@@ -1,19 +1,31 @@
-import { StatusBar } from 'expo-status-bar';
+import { useState } from 'react';
+import { Pressable, StatusBar } from 'react-native';
 import { StyleSheet, Text, View } from 'react-native';
 
+const MAX_HEX_VALUE = 16777215; // (256 x 256 x 256) -1
+
 export default function App() {
+  const [currentColor, setCurrentColor] = useState('#FFFFFF');
+
+  const generateRandomColor = () => {
+    const randomColor = `#${Math.floor(Math.random() * MAX_HEX_VALUE).toString(
+      16
+    )}`;
+    setCurrentColor(randomColor);
+  };
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Pressable
+      style={[styles.container, { backgroundColor: currentColor }]}
+      onPress={generateRandomColor}
+    >
+      <Text>Hello there</Text>
+    </Pressable>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },
