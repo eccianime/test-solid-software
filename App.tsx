@@ -13,9 +13,9 @@ export default function App() {
   const animatedColor = useRef(new Animated.Value(0)).current;
 
   const generateRandomColor = () => {
-    const randomColor = `#${Math.floor(Math.random() * MAX_HEX_VALUE).toString(
-      16
-    )}`;
+    const randomColor = `#${Math.floor(Math.random() * MAX_HEX_VALUE)
+      .toString(16)
+      .padStart(6, '0')}`;
 
     setNextColor(randomColor);
     Animated.timing(animatedColor, {
