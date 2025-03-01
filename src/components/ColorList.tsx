@@ -22,12 +22,12 @@ const ColorList = ({ data }: ColorListProps) => {
 const styles = StyleSheet.create({
   listExternal: {
     position: 'absolute',
-    bottom: 0,
+    bottom: 20,
     left: 0,
   },
   listInternal: {
     flexGrow: 1,
-    borderTopWidth: 1,
+    justifyContent: 'center',
   },
 });
 

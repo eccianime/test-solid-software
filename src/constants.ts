@@ -10,4 +10,4 @@ export const PONDERATIONS = {
   B: 0.0722,
 };
 
-export const BOX_SIZE = Dimensions.get('window').width / 5;
+export const BOX_SIZE = Dimensions.get('window').width / 5 - 15;

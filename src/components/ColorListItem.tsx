@@ -11,7 +11,7 @@ const ColorListItem = ({ color }: ColorListItemProps) => {
   return (
     <View style={[styles.colorBox, { backgroundColor: color }]}>
       <Text style={[styles.textColorBox, { color: returnBlackOrWhite(color) }]}>
-        {color}
+        {color.toUpperCase()}
       </Text>
     </View>
   );
@@ -19,12 +19,13 @@ const ColorListItem = ({ color }: ColorListItemProps) => {
 
 const styles = StyleSheet.create({
   colorBox: {
+    marginHorizontal: 5,
     width: BOX_SIZE,
     height: BOX_SIZE,
     justifyContent: 'center',
     alignItems: 'center',
-    borderRightWidth: 1,
-    borderLeftWidth: 1,
+    borderWidth: 1,
+    borderRadius: 16,
   },
   textColorBox: {
     fontSize: 12,
