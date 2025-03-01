@@ -17,14 +17,15 @@ export default function App() {
       .toString(16)
       .padStart(6, '0')}`;
 
+    animatedColor.setValue(0);
     setNextColor(randomColor);
+
     Animated.timing(animatedColor, {
       toValue: 1,
       duration: 500,
       useNativeDriver: false,
     }).start(() => {
       setPreviousColor(randomColor);
-      animatedColor.setValue(0);
     });
   };
 
