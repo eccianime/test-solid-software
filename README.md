@@ -49,6 +49,15 @@ The app calculates the brightness of the background color to determine whether t
   };
   ```
 
+Considering the final formula as specified in [this article](https://en.wikipedia.org/wiki/Relative_luminance) as the relative luminance (the percentage of color that a human eye can see) and based on that if this value falls behind a defined threshold the font color should be white or black
+
+   ```javascript
+   export const returnBlackOrWhite = (hex: string) => {
+     const brightness = getBrightness(hex);
+     return brightness > 128 ? BLACK_COLOR : WHITE_COLOR;
+   };
+   ```
+
 ### Animations
 The transition between colors is animated using the Animated API. The Animated.Value is used to interpolate between the previous and next colors:
 
