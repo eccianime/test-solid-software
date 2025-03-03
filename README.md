@@ -31,8 +31,8 @@ To run this project, make sure you have React Native set up on your machine. If 
 3. Run the app:
 
     ```bash
-    npx react-native run-android  # For Android
-    npx react-native run-ios      # For iOS
+    npm run android              # For Android
+    npm run ios                  # For iOS
     ```
     
 ## Code Explanation
