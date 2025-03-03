@@ -18,8 +18,8 @@ To run this project, make sure you have React Native set up on your machine. If 
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/random-color-app.git
-   cd random-color-app
+   git clone https://github.com/eccianime/test-solid-software.git
+   cd test-solid-software
    ```
    
 2. Install dependencies:
